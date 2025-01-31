@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Detail</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #3b8d99, #6b6b83);
+            font-family: 'Verdana', sans-serif;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 3em;
+            color: #222;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            color: #333;
+            margin: 10px 0;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #ff5722;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .button {
+            padding: 15px 30px;
+            margin: 10px;
+            color: #fff;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #e64a19;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Client Details</h1>
+        <p><strong>First Name:</strong> <span class="highlight">{{ client.first_name }}</span></p>
+        <p><strong>Last Name:</strong> <span class="highlight">{{ client.last_name }}</span></p>
+        <p><strong>Email:</strong> <span class="highlight">{{ client.email }}</span></p>
+        <p><strong>Phone:</strong> <span class="highlight">{{ client.phone }}</span></p>
+        <p><strong>Address:</strong> <span class="highlight">{{ client.address }}</span></p>
+
+        <div class="buttons">
+            <a href="{{ back_url }}" class="button">Back</a>
+            <a href="{% url 'client_edit' client.id %}" class="button">Edit</a>
+            <form method="POST" action="{% url 'client_delete' client.id %}">
+                {% csrf_token %}
+                <button type="submit" class="button">Delete</button>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

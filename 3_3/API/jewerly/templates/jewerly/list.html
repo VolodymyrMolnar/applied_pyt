@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Clients</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #3b8d99, #6b6b83);
+            font-family: 'Verdana', sans-serif;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 3em;
+            color: #222;
+            margin-bottom: 30px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        a {
+            text-decoration: none;
+            color: #ff5722;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #e64a19;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .button {
+            padding: 15px 30px;
+            color: #fff;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #e64a19;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>List of Clients</h1>
+        <ul>
+            {% for client in clients %}
+                <li><a href="{% url 'client_detail' client.id %}">{{ client }}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="buttons">
+            <a href="{% url 'client_add' %}" class="button">Add New Client</a>
+            <a href="{% url 'welcome_page' %}" class="button">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

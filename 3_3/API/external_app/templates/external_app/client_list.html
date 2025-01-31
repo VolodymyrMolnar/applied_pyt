@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client List</title>
+</head>
+<body>
+    <h1>Client List</h1>
+    {% if clients %}
+        <ul>
+            {% for client in clients %}
+            <li>
+                {{ client.name }} ({{ client.email }}, {{ client.phone }})
+                <form method="post" style="display: inline;" action="{% url 'delete_client' client.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="client_id" value="{{ client.id }}">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No clients available.</p>
+    {% endif %}
+</body>
+</html>
