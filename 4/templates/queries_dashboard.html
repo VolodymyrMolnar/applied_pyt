@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Складні запити</title>
+</head>
+<body>
+    <h1>Складні запити</h1>
+
+    <h2>1. Загальна сума замовлень для кожного клієнта</h2>
+    <ul>
+        {% for client in total_orders_per_client %}
+        <li>{{ client.client__first_name }} {{ client.client__last_name }}: ${{ client.total_spent|floatformat:2 }}</li>
+        {% empty %}
+        <p>Дані відсутні.</p>
+        {% endfor %}
+    </ul>
+
+    <h2>2. Топ співробітників за кількістю оброблених замовлень</h2>
+    <ul>
+        {% for employee in top_employees_by_orders %}
+        <li>{{ employee.employee__first_name }} {{ employee.employee__last_name }}: {{ employee.order_count }} замовлень</li>
+        {% empty %}
+        <p>Дані відсутні.</p>
+        {% endfor %}
+    </ul>
+
+    <h2>3. Найпопулярніший тип продукту</h2>
+    <ul>
+        {% for product in most_popular_product_type %}
+        <li>{{ product.product__type }}: {{ product.total_quantity }} одиниць</li>
+        {% empty %}
+        <p>Дані відсутні.</p>
+        {% endfor %}
+    </ul>
+
+    <h2>4. Клієнти, які витратили більше $1000</h2>
+    <ul>
+        {% for client in high_spending_clients %}
+        <li>{{ client.client__first_name }} {{ client.client__last_name }}: ${{ client.total_spent|floatformat:2 }}</li>
+        {% empty %}
+        <p>Дані відсутні.</p>
+        {% endfor %}
+    </ul>
+
+    <h2>5. Мінімальна кількість продуктів у замовленнях для кожного клієнта</h2>
+    <ul>
+        {% for order in min_products_per_order %}
+        <li>{{ order.order__client__first_name }} {{ order.order__client__last_name }}: {{ order.min_quantity }} продуктів</li>
+        {% empty %}
+        <p>Дані відсутні.</p>
+        {% endfor %}
+    </ul>
+
+    <h2>6. Середня ціна продуктів за кожним типом</h2>
+    <ul>
+        {% for product in avg_price_per_product_type %}
+        <li>{{ product.product__type }}: ${{ product.avg_price|floatformat:2 }}</li>
+        {% empty %}
+        <p>Дані відсутні.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

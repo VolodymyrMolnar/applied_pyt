@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Dashboard</h1>
+
+    <form method="get" action="/dashboard/">
+        <label for="filter">Filter by:</label>
+        <select name="filter" id="filter">
+            <option value="type">Product Type</option>
+            <option value="price">Price Range</option>
+        </select>
+        <label for="min-price">Min Price:</label>
+        <input type="number" id="min-price" name="min_price">
+        <label for="max-price">Max Price:</label>
+        <input type="number" id="max-price" name="max_price">
+        <button type="submit">Apply Filter</button>
+    </form>
+
+    <h2>Bar Chart</h2>
+    <div id="bar-chart">{{ bar_chart|safe }}</div>
+
+    <h2>Pie Chart</h2>
+    <div id="pie-chart">{{ pie_chart|safe }}</div>
+
+    <h2>Line Chart</h2>
+    <div id="line-chart">{{ line_chart|safe }}</div>
+</body>
+</html>
